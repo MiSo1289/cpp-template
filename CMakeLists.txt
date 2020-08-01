@@ -7,5 +7,13 @@ include(conanbuildinfo)
 
 conan_basic_setup(TARGETS)
 
+find_package(Doxygen)
+if(DOXYGEN_FOUND)
+  set(DOXYGEN_OUTPUT_DIRECTORY "docs")
+  set(DOXYGEN_EXCLUDE_SYMBOLS "detail")
+  set(DOXYGEN_JAVADOC_AUTOBRIEF YES)
+  doxygen_add_docs(cpp_template_doxygen "src")
+endif()
+
 add_subdirectory(src)
 add_subdirectory(tests)
