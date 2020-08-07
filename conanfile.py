@@ -53,8 +53,8 @@ class CppTemplate(ConanFile):
             cmake.test(target="cpp_template_tests")
 
     def package(self):
-        self.copy("*.h", dst="include", src="include")
-        self.copy("*.hpp", dst="include", src="include")
+        self.copy("*.h", dst="include", src="src")
+        self.copy("*.hpp", dst="include", src="src")
         self.copy("*.so*", dst="lib", keep_path=False, symlinks=True)
         self.copy("*.a", dst="lib", keep_path=False)
 
@@ -63,4 +63,4 @@ class CppTemplate(ConanFile):
         del self.info.options.tests
 
     def package_info(self):
-        self.cpp_info.libs = tools.collect_libs()
+        self.cpp_info.libs = tools.collect_libs(self)
