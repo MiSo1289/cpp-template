@@ -50,6 +50,7 @@ class {{ package_name }}(ConanFile):
     )
 
     def imports(self):
+        self.copy("*.dll", dst="bin", keep_path=False)
         self.copy("*.so*", dst="lib", keep_path=False)
 
         with open("version.txt", "w") as version_file:
@@ -67,6 +68,7 @@ class {{ package_name }}(ConanFile):
     def package(self):
         self.copy("*.h", dst="include", src="src")
         self.copy("*.hpp", dst="include", src="src")
+        self.copy("*.dll", dst="bin", src="bin", keep_path=False, symlinks=True)
         self.copy("*.so*", dst="lib", keep_path=False, symlinks=True)
         self.copy("*.a", dst="lib", keep_path=False)
 
