@@ -5,7 +5,7 @@ target_include_directories(
   {{ name }}
 
   PUBLIC
-  "."
+  "${CMAKE_CURRENT_SOURCE_DIR}"
   "${CMAKE_CURRENT_BINARY_DIR}"
 )
 
@@ -29,7 +29,7 @@ target_link_libraries(
   {{ name }}_executable
 
   PRIVATE
-  {{ name }}
+  {{ name }}::{{ name }}
 )
 
 add_subdirectory({{name}})
