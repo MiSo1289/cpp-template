@@ -13,7 +13,7 @@ if(DOXYGEN_FOUND)
   set(DOXYGEN_OUTPUT_DIRECTORY "docs")
   set(DOXYGEN_EXCLUDE_SYMBOLS "detail")
   set(DOXYGEN_JAVADOC_AUTOBRIEF YES)
-  doxygen_add_docs(cpp_template_doxygen "src")
+  doxygen_add_docs({{ name }}_docs "src")
 endif()
 
 add_subdirectory(src)

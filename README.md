@@ -5,6 +5,7 @@ This is a C++20 project template for the Conan package manager.
 - CMake project skeleton with a library, and a CLI executable powered by Lyra.
 - Unit testing skeleton using Catch2 and Trompeloeil for mocking.
 - Many other useful libraries to choose from included out of the box.
+- Documentation target is created when Doxygen is installed.
 
 ## Usage
 Clone this repository into `~/.conan/templates/command/new/`:
