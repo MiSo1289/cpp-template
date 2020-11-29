@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.17)
-file(READ "${CMAKE_CURRENT_BINARY_DIR}/version.txt" CPP_TEMPLATE_VERSION)
-project(CppTemplate VERSION "${CPP_TEMPLATE_VERSION}")
+set(PROJECT_NS "{{ name | replace("-", "_") | upper }}")
+file(READ "${CMAKE_CURRENT_BINARY_DIR}/version.txt" ${PROJECT_NS}_VERSION)
+project({{ package_name }} VERSION "${${PROJECT_NS}_VERSION}")
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_BINARY_DIR}")
 include(conanbuildinfo)

@@ -1,7 +1,7 @@
 target_sources(
-  cpp_template_tests
+  {{ name }}_tests
 
   PRIVATE
-  test_cpp_template.cpp
+  test_{{ name }}.cpp
   test_main.cpp
 )

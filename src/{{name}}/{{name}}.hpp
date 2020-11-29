@@ -1,8 +1,8 @@
 #pragma once
-
+{% set ns_name = name | replace("-", "_") %}
 #include <string>
 
-namespace cpp_template
+namespace {{ ns_name }}
 {
     class IFoo
     {
@@ -29,4 +29,4 @@ namespace cpp_template
       private:
         IFoo& foo_;
     };
-}  // namespace cpp_template
+}  // namespace {{ ns_name }}

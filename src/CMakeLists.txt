@@ -1,15 +1,16 @@
-add_library(cpp_template)
-target_compile_features(cpp_template PUBLIC cxx_std_20)
+add_library({{ name }})
+add_library({{ name }}::{{ name }} ALIAS {{ name }})
+target_compile_features({{ name }} PUBLIC cxx_std_20)
 target_include_directories(
-  cpp_template
+  {{ name }}
 
   PUBLIC
-  "${CMAKE_CURRENT_SOURCE_DIR}"
+  "."
   "${CMAKE_CURRENT_BINARY_DIR}"
 )
 
 target_link_libraries(
-  cpp_template
+  {{ name }}
 
   PUBLIC
   CONAN_PKG::boost
@@ -23,12 +24,12 @@ target_link_libraries(
   CONAN_PKG::spdlog
 )
 
-add_executable(cpp_template_executable)
+add_executable({{ name }}_executable)
 target_link_libraries(
-  cpp_template_executable
+  {{ name }}_executable
 
   PRIVATE
-  cpp_template
+  {{ name }}
 )
 
-add_subdirectory(cpp_template)
+add_subdirectory({{name}})

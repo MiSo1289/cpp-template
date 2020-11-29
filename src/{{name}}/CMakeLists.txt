@@ -1,18 +1,18 @@
 configure_file(build_config.hpp.in build_config.hpp @ONLY)
 
 target_sources(
-  cpp_template
+  {{ name }}
 
   PUBLIC
   build_config.hpp
-  cpp_template.hpp
+  {{name}}.hpp
 
   PRIVATE
-  cpp_template.cpp
+  {{name}}.cpp
 )
 
 target_sources(
-  cpp_template_executable
+  {{ name }}_executable
 
   PRIVATE
   main.cpp

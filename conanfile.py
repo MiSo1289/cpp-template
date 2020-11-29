@@ -1,8 +1,8 @@
 from conans import CMake, ConanFile, tools
 
 
-class CppTemplate(ConanFile):
-    name = "cpp-template"
+class {{ package_name }}(ConanFile):
+    name = "{{ name }}"
     version = "0.1.0"
     revision_mode = "scm"
     settings = ("os", "compiler", "build_type", "arch")
@@ -12,6 +12,7 @@ class CppTemplate(ConanFile):
         "tests": [True, False],
     }
     default_options = {
+        "shared": False,
         "fPIC": True,
         "tests": True
     }
@@ -22,19 +23,30 @@ class CppTemplate(ConanFile):
         "CMakeLists.txt",
     )
     requires = (
-        "boost/1.73.0",
-        "fmt/7.0.1",
+        # Boost libraries
+        "boost/1.74.0",
+        # Good alternative to IO streams
+        "fmt/7.1.2",
+        # Customizable alternative for std::function
         "function2/4.1.0",
-        "date/2.4.1",
-        "lyra/1.4.0",
-        "magic_enum/0.6.6",
-        "ms-gsl/3.0.1",
-        "range-v3/0.10.0",
-        "spdlog/1.7.0",
+        # Calendar extensions for chrono
+        "date/3.0.0",
+        # CLI parser
+        "lyra/1.5.1",
+        # Enum utils (e.g. stringification)
+        "magic_enum/0.7.0",
+        # Guideline support library - MS implementation
+        "ms-gsl/3.1.0",
+        # Alternative to iterators
+        "range-v3/0.11.0",
+        # Logging library based on FMT
+        "spdlog/1.8.1",
     )
     build_requires = (
-        "catch2/2.13.0",
-        "gtest/1.10.0",
+        # Unit-test framework
+        "catch2/2.13.3",
+        # Mocking for unit-tests
+        "trompeloeil/v39@rollbear/stable",
     )
 
     def imports(self):
@@ -47,10 +59,10 @@ class CppTemplate(ConanFile):
         cmake = CMake(self)
 
         cmake.configure()
-        cmake.build(target="cpp_template")
+        cmake.build(target="{{ name }}")
 
         if self.options.tests:
-            cmake.test(target="cpp_template_tests")
+            cmake.test(target="{{ name }}_tests")
 
     def package(self):
         self.copy("*.h", dst="include", src="src")

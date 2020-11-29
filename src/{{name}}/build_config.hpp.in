@@ -1,0 +1,7 @@
+#pragma once
+{% set macro_ns_name = name | replace("-", "_") | upper %}
+#define {{ macro_ns_name }}_VERSION "@PROJECT_VERSION@"
+#define {{ macro_ns_name }}_VERSION_MAJOR @PROJECT_VERSION_MAJOR@
+#define {{ macro_ns_name }}_VERSION_MINOR @PROJECT_VERSION_MINOR@
+#define {{ macro_ns_name }}_VERSION_PATCH @PROJECT_VERSION_PATCH@
+#define {{ macro_ns_name }}_VERSION_TWEAK @PROJECT_VERSION_TWEAK@

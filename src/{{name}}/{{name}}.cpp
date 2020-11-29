@@ -1,8 +1,8 @@
-#include "cpp_template/cpp_template.hpp"
-
+#include "{{name}}/{{name}}.hpp"
+{% set ns_name = name | replace("-", "_") %}
 #include <fmt/format.h>
 
-namespace cpp_template
+namespace {{ ns_name }}
 {
     auto Foo::foo() const -> std::string
     {
@@ -13,4 +13,4 @@ namespace cpp_template
     {
         return fmt::format("Bar: {0}", foo_.foo());
     }
-}  // namespace cpp_template
+}  // namespace {{ ns_name }}

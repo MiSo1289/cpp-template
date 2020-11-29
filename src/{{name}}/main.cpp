@@ -1,8 +1,11 @@
-#include <iostream>
-
+#include <cstdio>
+#include <cstdlib>
+{% set ns_name = name | replace("-", "_") %}
+#include <fmt/core.h>
+#include <fmt/ostream.h>
 #include <lyra/lyra.hpp>
 #include <spdlog/spdlog.h>
-#include "cpp_template/cpp_template.hpp"
+#include "{{name}}/{{name}}.hpp"
 
 auto main(int const argc, char const* const* const argv) -> int
 {
@@ -13,21 +16,21 @@ auto main(int const argc, char const* const* const argv) -> int
     if (auto const result = cli.parse({argc, argv});
         not result)
     {
-        std::cerr << "Error: " << result.errorMessage() << "\n";
-        std::cout << "Run with --help to see correct usage.\n";
+        fmt::print(stderr, "Error: {0}\n", result.errorMessage());
+        fmt::print("Run with --help to see correct usage.\n");
 
         return EXIT_FAILURE;
     }
 
     if (print_help)
     {
-        std::cout << cli << "\n";
+        fmt::print("{0}\n", cli);
 
         return EXIT_SUCCESS;
     }
 
-    auto foo = cpp_template::Foo{};
-    auto bar = cpp_template::Bar{foo};
+    auto foo = {{ ns_name }}::Foo{};
+    auto bar = {{ ns_name }}::Bar{foo};
 
     spdlog::info("Message: {0}", bar.bar());
 

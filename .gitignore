@@ -1,10 +1,10 @@
 # IDE files
-.idea
+../.idea
 .vscode
 .vs
 
 # Common build folder names
 build
 build-*
-cmake-build-*
+cmake-build-debug
 out
